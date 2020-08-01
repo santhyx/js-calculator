@@ -1,54 +1,72 @@
-class Calculator {
-    number;
-    result = 0;
+'use strict'
 
-    constructor(component) {
-        this.component = component;
-        this.Clear();
+class Calculator {
+    constructor() {
+        this.currentNumber = 0;
+        this.Result = 0;
+        this.currentOperator = '';
     }
 
     Add = () => {
-        this.result += this.number;
-        this.ResetNumber();
+        this.Result += this.currentNumber;
+        this.DisposeNumber();
     };
 
     Subtract = () => {
-        this.result -= this.number;
-        this.ResetNumber();
+        this.Result -= this.currentNumber;
+        this.DisposeNumber();
     };
 
     Divide = () => {
-        if (this.number !== 0) {
-            this.result /= this.number;
-            this.ResetNumber();
-        } else
-            return;
+        if (this.Result == 0) {
+            this.Result = this.currentNumber;
+        } else {
+            this.Result /= this.currentNumber;
+        }
+        this.DisposeNumber();
     };
 
     Multiply = () => {
-        this.result *= this.number;
-        this.ResetNumber();
+        if (this.Result == 0) {
+            this.Result = this.currentNumber;
+        } else {
+            this.Result *= this.currentNumber;
+        }
+        this.DisposeNumber();
     };
 
+    DisposeNumber = () => {
+        this.currentNumber = 0;
+    }
+
     Clear = () => {
-        this.ResetNumber();
-        this.result = 0;
-        this.component.ClearScreen();
+        this.DisposeNumber();
+        this.Result = 0;
     }
+};
 
-    ResetNumber = () => {
-        this.number = 0;
-    }
-}
+const calculator = new Calculator();
 
-const component = new Component();
-const calculator = new Calculator(component);
+plusBtn.addEventListener('click', () => {
+    calculator.currentOperator = '+';
+    calculator.Add();
+    component.ClearScreen();
+});
 
-component.GetNumbers();
+minusBtn.addEventListener('click', () => {
+    calculator.currentOperator = '-';
+    calculator.Subtract();
+    component.ClearScreen();
+});
 
-plusBtn.addEventListener('click', calculator.Add);
-minusBtn.addEventListener('click', calculator.Subtract);
-divideBtn.addEventListener('click', calculator.Divide);
-multiplyBtn.addEventListener('click', calculator.Multiply);
-clearBtn.addEventListener('click', calculator.Clear);
-resultBtn.addEventListener('click', component.ShowResult);
+multiplyBtn.addEventListener('click', () => {
+    calculator.currentOperator = 'x';
+    calculator.Multiply();
+    component.ClearScreen();
+});
+
+divideBtn.addEventListener('click', () => {
+    calculator.currentOperator = '/';
+    calculator.Divide();
+    component.ClearScreen();
+});

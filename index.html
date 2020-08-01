@@ -7,14 +7,17 @@
     <title>CALCULATOR</title>
     <link rel="stylesheet" href="styles/style.css">
     <script src="js/DOMbinds.js" defer></script>
-    <script src="js/Component.js" defer></script>
     <script src="js/Calculator.js" defer></script>
+    <script src="js/Component.js" defer></script>
 </head>
 
 <body>
     <div class="calculator-wraper">
         <div class="screen-panel">
             <h1 id="screen">0</h1>
+        </div>
+        <div class="remove-number">
+            <button id = "remove-num-btn"><</button>
         </div>
         <div class="buttons-numbers-section">
             <div class="row">
@@ -36,7 +39,7 @@
                 <input type="button" value="x" class="op-btn btn" id="x">
             </div>
             <div class="row">
-                <input type="button" value="." class="op-btn btn" id=".">
+                <input type="button" value="." class="num-btn btn" id=".">
                 <input type="button" value="0" class="num-btn btn" id="0">
                 <input type="button" value="=" class="op-btn btn" id="=">
                 <input type="button" value="&divide;" class="op-btn btn" id="/">
